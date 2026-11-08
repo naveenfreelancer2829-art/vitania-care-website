@@ -264,3 +264,15 @@ header.site,.topbar{animation:slideDown .6s ease-out both}
 .ticks b{color:var(--ink);font-weight:600}
 .ticks li span{min-width:0}
 main{overflow-x:clip}
+
+/* audience split: organisations vs individuals & families */
+.audience{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.aud{border-radius:20px;padding:clamp(24px,4vw,36px);display:grid;gap:14px;align-content:start}
+.aud h3{font-size:1.45rem}
+.aud .btn{justify-self:start;margin-top:6px}
+.aud-org{background:var(--navy);color:#D3E2EF}
+.aud-org h3{color:#fff}
+.aud-org .ico{background:rgba(126,220,203,.15);color:#7EDCCB}
+.aud-org .ticks li{color:#fff}
+.aud-family{background:#fff;border:1px solid var(--line)}
+@media (max-width:820px){.audience{grid-template-columns:1fr}}

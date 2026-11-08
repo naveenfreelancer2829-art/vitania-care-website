@@ -21,7 +21,7 @@
       ['.head', ''], ['.pillars li', ''], ['.cards .card', ''], ['.features .feature', ''],
       ['.steps li', ''], ['.faq details', ''], ['.team .person', ''], ['.vm > div', ''],
       ['.split .media', 'zoom'], ['.split .copy', ''], ['.benefits li', 'from-left'], ['.chips li', ''],
-      ['.cta', 'zoom'], ['.info', 'from-left'], ['form.enquiry', 'from-right'], ['.foot > div', '']
+      ['.cta', 'zoom'], ['.audience .aud', 'zoom'], ['.info', 'from-left'], ['form.enquiry', 'from-right'], ['.foot > div', '']
     ];
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });

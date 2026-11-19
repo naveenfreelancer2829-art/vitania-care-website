@@ -1,18 +1,13 @@
 /* Vitania Care website v2
    Layout: utility bar → sticky header → split hero → solution cards → alternating feature bands → steps → FAQ → CTA → footer.
    Single light theme by design (corporate healthcare); every colour is set explicitly. */
-@font-face{font-family:"Inter";font-weight:400;font-display:swap;src:url(assets/fonts/inter-400.woff) format("woff")}
-@font-face{font-family:"Inter";font-weight:500;font-display:swap;src:url(assets/fonts/inter-500.woff) format("woff")}
-@font-face{font-family:"Inter";font-weight:600 700;font-display:swap;src:url(assets/fonts/inter-600.woff) format("woff")}
-@font-face{font-family:"Inter Display";font-weight:600;font-display:swap;src:url(assets/fonts/interdisplay-600.woff) format("woff")}
-@font-face{font-family:"Inter Display";font-weight:700;font-display:swap;src:url(assets/fonts/interdisplay-700.woff) format("woff")}
 
 :root{
   --navy:#0B3D6B; --navy-2:#082C4E; --blue:#0B76C5; --teal:#0A9488; --teal-ink:#087A70; --green:#3DAA5C;
   --bg:#FFFFFF; --soft:#F3F8FA; --mint:#E9F6F3; --sky:#EAF3FB;
   --ink:#14263A; --body:#3E5266; --muted:#64778A; --line:#DCE6EE;
-  --display:"Inter Display","Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
-  --text:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --display:"Outfit",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --text:"Poppins",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
   --r:16px; --shadow:0 12px 32px -18px rgba(11,61,107,.35);
   color-scheme:light;
 }
@@ -23,7 +18,7 @@ body{margin:0;background:var(--bg);color:var(--body);font-family:var(--text);fon
 img{max-width:100%;height:auto;display:block}
 a{color:inherit}
 p{margin:0}
-h1,h2,h3,h4{font-family:var(--display);color:var(--ink);margin:0;line-height:1.15;letter-spacing:-.015em;text-wrap:balance}
+h1,h2,h3,h4{font-family:var(--display);color:var(--ink);margin:0;line-height:1.15;letter-spacing:-.01em;text-wrap:balance}
 h1{font-size:clamp(2.1rem,4.4vw,3.4rem);font-weight:700}
 h2{font-size:clamp(1.65rem,3vw,2.35rem);font-weight:700}
 h3{font-size:1.2rem;font-weight:600}

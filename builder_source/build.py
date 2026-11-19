@@ -111,11 +111,11 @@ def footer():
 </div></footer>'''
 
 # ---------- shared blocks ----------
-def faq(items, soft=False):
+def faq(items, soft=False, intro=""):
     FAQS.extend(items)
     d = "".join(f'<details{" open" if i == 0 else ""}><summary>{q}</summary><p>{a}</p></details>' for i, (q, a) in enumerate(items))
     return f'''<section{' class="soft"' if soft else ''}><div class="wrap">
-  <div class="head"><span class="eyebrow">FAQs</span><h2>Frequently Asked Questions</h2></div>
+  <div class="head"><span class="eyebrow">FAQs</span><h2>Frequently Asked Questions</h2>{f'<p class="lede">{intro}</p>' if intro else ''}</div>
   <div class="faq">{d}</div></div></section>'''
 
 def features(items):
@@ -254,15 +254,15 @@ home_faq = [
  ("Which locations do you cover?", "We cover locations across India. Onsite services, such as Occupational Health Centres, Onsite Health Check-ups and Onsite Camps, are arranged at your office locations, while Teleconsultation, counselling, webinars and seminars are available nationwide."),
 ]
 cards = [
- ("employee-wellness.html#ohc", "ohc-clinic", "Doctor consulting an employee at an Occupational Health Centre", "Occupational Health Centre (OHC)", "A fully managed medical centre at your premises, staffed by qualified doctors and nurses."),
- ("health-checkups.html", "bp-check", "Doctor measuring an employee's blood pressure during a health check-up", "Onsite Health Check-ups", "Annual, pre-employment and Onsite Health Check-ups at your workplace, with every report reviewed by a doctor."),
- ("health-checkups.html#camps", "medical-camp", "Doctors attending to employees at an onsite health camp", "Onsite Camps", "Deployment of MBBS and specialist doctors at your workplace for health camps."),
- ("employee-wellness.html#teleconsultation", "online-doctor", "Doctor greeting a patient during a video consultation", "Teleconsultation", "Teleconsultation by general physicians and specialist doctors, by phone or video."),
- ("health-checkups.html#lab-tests", "lab-test", "Laboratory technician examining a blood sample", "Lab Tests", "Pathology and radiology services, with onsite and home sample collection."),
- ("mental-wellbeing.html", None, "", "Mental Wellbeing (EAP)", "Confidential counselling for employees and their families, along with workshops on stress, sleep and resilience."),
- ("employee-wellness.html", "nutrition-guidance", "Nutritionist explaining a balanced diet plan to a client", "Employee Wellness Program", "Webinars and seminars, fitness and yoga, nutrition coaching and chronic care programs throughout the year."),
- ("home-care.html", "doctor-home-visit", "Doctor examining an elderly man at home", "Home Care", "Doctor and nurse visits, physiotherapy, lab tests and medicine delivery in the comfort of home."),
- ("home-care.html#caregivers", "nurse-elderly-care", "Caregiver holding the hand of an elderly woman", "Caregiver Services", "Trained caregivers who assist with personal care, mobility and daily living at home."),
+ ("employee-wellness.html#ohc", "ohc-clinic", "Doctor consulting an employee at an Occupational Health Centre", "Occupational Health Centre (OHC)", "A comprehensive, professionally managed healthcare facility at your workplace, staffed by qualified doctors and nurses to provide accessible medical care, employee health monitoring and occupational health support."),
+ ("health-checkups.html", "bp-check", "Doctor measuring an employee's blood pressure during a health check-up", "Onsite Health Check-ups", "Workplace health screenings, annual and pre-employment check-ups, with doctor-reviewed reports."),
+ ("health-checkups.html#camps", "medical-camp", "Doctors attending to employees at an onsite health camp", "Onsite Medical Camps", "Onsite deployment of qualified MBBS and specialist doctors for workplace health camps."),
+ ("employee-wellness.html#teleconsultation", "online-doctor", "Doctor greeting a patient during a video consultation", "Teleconsultation", "Convenient phone and video consultations with general physicians and specialists."),
+ ("health-checkups.html#lab-tests", "lab-test", "Laboratory technician examining a blood sample", "Laboratory &amp; Diagnostic Services", "Pathology and radiology services with convenient onsite and home sample collection."),
+ ("mental-wellbeing.html", None, "", "Mental Wellbeing (EAP)", "Confidential counselling and wellness workshops for employees and their families."),
+ ("employee-wellness.html", "nutrition-guidance", "Nutritionist explaining a balanced diet plan to a client", "Employee Wellness Programs", "Year-round wellness initiatives covering fitness, yoga, nutrition, webinars and chronic care management."),
+ ("home-care.html", "doctor-home-visit", "Doctor examining an elderly man at home", "Home Healthcare", "Doctor and nursing visits, physiotherapy, lab tests and medicine delivery at home."),
+ ("home-care.html#caregivers", "nurse-elderly-care", "Caregiver holding the hand of an elderly woman", "Caregiver Services", "Trained caregivers providing personal care, mobility assistance and daily living support at home."),
 ]
 def card_media(p, a):
     return img(p, a) if p else f'<div class="card-art">{I["mind"]}</div>'
@@ -274,10 +274,10 @@ home = f'''<section class="hero"><div class="wrap hero-grid">
   <div class="hero-copy">
     <span class="eyebrow">Corporate Health &amp; Wellness Partner Across India</span>
     <h1>Your Trusted Partner for <span class="accent">Employee Health and Wellness</span></h1>
-    <p class="lede">Vitania Care serves organisations across India with Occupational Health Centres, Onsite Health Check-ups, Teleconsultation, Lab Tests and Employee Wellness Programs. For individuals and families, we provide Home Care and Caregiver Services at your doorstep.</p>
-    {ticks([("Pan-India Coverage", "Onsite and online services for your offices across India."),
-            ("Qualified Professionals", "MBBS and specialist doctors, nurses, counsellors and nutritionists."),
-            ("Single Point of Contact", "One dedicated team for planning, scheduling and reporting.")])}
+    <p class="lede">Vitania Care delivers comprehensive healthcare solutions to organisations across India, including Occupational Health Centres (OHCs), Onsite Health Check-ups, Doctor Teleconsultation, Laboratory Testing, Vaccination Drives, Food Handler Health Checks and Employee Wellness Programs.</p>
+    {ticks([("Pan-India Coverage", "Seamless delivery of onsite and digital healthcare services for organisations across India."),
+            ("Qualified Healthcare Professionals", "Access to a multidisciplinary team of MBBS and specialist doctors, nurses, counsellors, physiotherapists and nutritionists."),
+            ("Single Point of Contact", "A dedicated team to manage coordination, planning, scheduling, service delivery and reporting, ensuring a smooth and hassle-free healthcare experience.")])}
     <div class="cta-row"><a class="btn btn-primary" href="contact.html">Request a Proposal</a><a class="btn btn-outline" href="#solutions">Explore Our Solutions</a></div>
   </div>
   <div class="hero-media">
@@ -293,119 +293,127 @@ home = f'''<section class="hero"><div class="wrap hero-grid">
 </ul></div></div>
 
 <section class="soft"><div class="wrap">
-  <div class="head center"><span class="eyebrow">Who We Serve</span><h2>Healthcare Solutions for Organisations and Families</h2>
-    <p class="lede">Whether you are an HR leader planning employee benefits or a family arranging care at home, we make it simple to find the right support.</p></div>
+  <div class="head center"><span class="eyebrow">Who We Serve</span><h2>Comprehensive Healthcare for Businesses and Families</h2>
+    <p class="lede">Whether you are an organisation seeking integrated employee healthcare solutions or a family looking for personalised care at home, Vitania Care offers dependable, end-to-end healthcare services designed around your needs — delivered with expertise, convenience and compassion.</p></div>
   <div class="audience">
     <div class="aud aud-org">
       <span class="ico">{I["building"]}</span>
       <h3>For Organisations</h3>
-      <p>Comprehensive programs that keep your workforce healthy, engaged and productive.</p>
-      <ul class="ticks"><li>Occupational Health Centre (OHC)</li><li>Onsite Health Check-ups &amp; Onsite Camps</li><li>Teleconsultation &amp; Lab Tests</li><li>Employee Wellness Program &amp; Mental Wellbeing (EAP)</li></ul>
+      <p><b>Comprehensive Corporate Healthcare &amp; Employee Wellness Solutions</b></p>
+      <p>Empowering organisations to build healthier, safer and more productive workplaces through integrated healthcare services, preventive health initiatives and employee wellbeing programs. Our tailored solutions are designed to support workforce health, enhance employee engagement and simplify healthcare management.</p>
+      {ticks([("Occupational Health Centre (OHC) Management", "End-to-end setup, management and staffing of workplace healthcare centres to support occupational health and employee medical needs."),
+              ("Onsite Health Check-ups &amp; Doctor Deployment", "Workplace health screenings, medical assessments and deployment of qualified doctors to ensure convenient and accessible healthcare for employees."),
+              ("Teleconsultation &amp; Laboratory Services", "Convenient access to medical consultations and reliable diagnostic testing through integrated healthcare solutions."),
+              ("Employee Wellness &amp; Mental Wellbeing (EAP)", "Holistic wellness initiatives encompassing physical fitness, nutrition, stress management, counselling and employee assistance programs to promote overall wellbeing.")])}
       <a class="btn btn-white" href="contact.html">Request a Proposal</a>
     </div>
     <div class="aud aud-family">
       <span class="ico">{I["home"]}</span>
       <h3>For Individuals &amp; Families</h3>
-      <p>Professional medical care and dependable support, delivered to your home.</p>
-      <ul class="ticks"><li>Doctor &amp; Nursing Visits at Home</li><li>Caregiver Services</li><li>Physiotherapy at Home</li><li>Lab Tests, Medicines &amp; Medical Equipment</li></ul>
+      <p><b>Personalised Home Healthcare &amp; Compassionate Care Services</b></p>
+      <p>Access professional medical care, personalised assistance and reliable healthcare support in the comfort of your home. Vitania Care connects individuals, senior citizens, patients and families with trusted healthcare professionals and essential healthcare services, making home-based care convenient, comfortable and dependable.</p>
+      {ticks([("Doctor &amp; Nursing Care at Home", "Professional medical consultations, nursing assistance and clinical care delivered at home by qualified healthcare professionals."),
+              ("Caregiver Services", "Compassionate and dependable caregivers to support senior citizens, patients and individuals who require assistance with daily activities and personal care."),
+              ("Physiotherapy at Home", "Personalised physiotherapy and rehabilitation services to support recovery, improve mobility, restore strength and enhance overall wellbeing."),
+              ("Lab Tests, Medicines &amp; Medical Equipment", "Convenient access to diagnostic tests, prescribed medicines and essential medical equipment, delivered or arranged to support your healthcare needs at home.")])}
       <a class="btn btn-primary" href="home-care.html#enquire">Arrange Home Care</a>
     </div>
   </div>
 </div></section>
 
 <section id="solutions"><div class="wrap">
-  <div class="head"><span class="eyebrow">Our Solutions</span><h2>Comprehensive Health Services for Your Workforce and Their Families</h2>
-    <p class="lede">Choose a single service or combine several into one integrated program, managed end to end by our team.</p></div>
+  <div class="head"><span class="eyebrow">Our Solutions</span><h2>Comprehensive Healthcare Solutions for Your Workforce and Their Families</h2>
+    <p class="lede">Vitania Care delivers tailored healthcare solutions to support your workforce and their families. Choose individual services or integrated healthcare programs, seamlessly managed end to end by our team.</p></div>
   {card_html}
 </div></section>
 
 <section class="soft"><div class="wrap split">
   <div class="media">{img("bp-monitor", "Doctor measuring a patient's blood pressure", WIDE, w=800, h=600)}</div>
   <div class="copy">
-    <span class="eyebrow">Why Vitania Care</span>
-    <h2>Healthier Teams, Simplified for HR</h2>
-    <p class="lede">We manage the planning, the medical professionals and the follow-up, allowing your HR team to focus on people rather than logistics.</p>
-    {benefits([("rupee", "Reduced Healthcare Costs", "Early screening and regular follow-up help reduce the need for expensive treatment and lower insurance claims over time."),
-                ("chart", "Fewer Sick Days", "Healthier employees tend to take less time off and remain more engaged at work."),
-                ("users", "A Valued Employee Benefit", "Health support that extends to families makes your organisation a more attractive place to work."),
-                ("lock", "Confidential by Design", "Personal health information remains private. Employers receive anonymised reports only.")])}
+    <span class="eyebrow">Why Vitania Care?</span>
+    <h2>Healthcare Made Simple. Workforce Wellbeing Made Better.</h2>
+    <p class="lede">We manage healthcare planning, professional deployment and ongoing coordination, enabling your HR team to focus on employee engagement while we take care of workforce wellbeing.</p>
+    {benefits([("rupee", "Optimised Healthcare Costs", "Preventive screenings and timely interventions help manage long-term healthcare expenses."),
+                ("chart", "Improved Workforce Productivity", "Proactive healthcare promotes employee wellbeing, reduces avoidable absenteeism and enhances productivity."),
+                ("users", "Enhanced Employee Benefits", "Comprehensive healthcare support for employees and their families strengthens employee satisfaction and retention."),
+                ("lock", "Confidential &amp; Secure", "Employee health information is treated with strict confidentiality, with employers receiving anonymised health reports.")])}
   </div>
 </div></section>
 
 <section><div class="wrap">
-  <div class="head"><span class="eyebrow">How It Works</span><h2>From Initial Consultation to Measurable Results</h2></div>
-  {steps([("Understand Your Needs", "We meet your HR team to understand your team size, locations, work shifts and health priorities."),
-          ("Design the Program", "You receive a clear annual plan with services, schedules and a transparent quotation."),
-          ("Deliver on the Ground", "Our doctors, nurses and wellness experts conduct every session, camp and consultation."),
-          ("Review and Improve", "Quarterly reports show participation and health trends, helping us refine the program.")])}
+  <div class="head"><span class="eyebrow">How It Works</span><h2>A Seamless Journey from Planning to Healthcare Delivery</h2></div>
+  {steps([("Understand Your Needs", "We assess your workforce, locations, operational requirements and healthcare priorities."),
+          ("Design Your Program", "We develop a customised healthcare plan with defined services, schedules and transparent pricing."),
+          ("Deliver Healthcare Services", "Our qualified doctors, nurses and wellness professionals ensure seamless service execution."),
+          ("Monitor &amp; Improve", "Periodic reports and performance reviews help track engagement, assess outcomes and improve program effectiveness.")])}
 </div></section>
 
 <section class="band"><div class="wrap">
-  <div class="head"><span class="eyebrow">Industries We Serve</span><h2>Built for Workplaces</h2>
-    <p class="lede">Our programs adapt to office-based teams, shift workers and distributed teams across India.</p></div>
-  {features([("building", "IT &amp; Technology Companies", "Desk-based teams that need support with stress, posture, sleep and lifestyle-related conditions."),
-             ("users", "Manufacturing &amp; Operations", "Shift workers who benefit from Occupational Health Centres, Onsite Health Check-ups and first-aid training."),
-             ("chart", "Banking, Finance &amp; Services", "High-pressure roles where mental wellbeing and regular health check-ups matter most."),
-             ("pulse", "Start-ups &amp; Growing Teams", "Flexible, cost-effective plans that grow with your headcount."),
-             ("calendar", "Hospitality &amp; Retail", "Pre-employment health checks and regular screening for customer-facing staff."),
-             ("home", "Employee Families", "We also provide medical care at home for the families of employees through Home Care and Caregiver Services.")])}
+  <div class="head"><span class="eyebrow">Industries We Serve</span><h2>Healthcare Solutions Across Diverse Industries</h2>
+    <p class="lede">We deliver customised healthcare solutions designed to meet the unique workforce requirements of diverse industries across India.</p></div>
+  {features([("building", "IT &amp; Technology", "Employee wellness, stress management, posture care and lifestyle health support."),
+             ("users", "Manufacturing &amp; Operations", "Occupational Health Centres, onsite medical support, health screenings and first-aid services."),
+             ("chart", "Banking, Finance &amp; Corporate Services", "Preventive health check-ups, mental wellbeing and employee wellness programs."),
+             ("pulse", "Start-ups &amp; Growing Businesses", "Flexible and scalable healthcare solutions aligned with workforce growth and business needs."),
+             ("calendar", "Hospitality &amp; Retail", "Pre-employment medical check-ups, food handler health assessments and periodic employee screenings."),
+             ("home", "Employee Families", "Accessible home healthcare, nursing, physiotherapy and caregiver services for employees' families.")])}
 </div></section>
-{faq(home_faq)}
+{faq(home_faq, intro="Find answers to common questions about our corporate healthcare solutions, service delivery, employee wellness programs and home healthcare services.")}
 {cta("Ready to Build a Healthier Workforce?", "Tell us about your organisation, and we will share a wellness plan and proposal tailored to your requirements.")}'''
 write("index.html", "Vitania Care | Corporate Health & Wellness Partner Across India",
       "Corporate health and wellness services across India: Occupational Health Centres, Onsite Health Check-ups, Onsite Camps, Teleconsultation, Lab Tests, Mental Wellbeing support and Home Care.", home)
 
 # ================= EMPLOYEE WELLNESS PROGRAM =================
 ew_faq = [
- ("What does an Employee Wellness Program include?", "A typical program combines an Occupational Health Centre, Onsite Health Check-ups, Teleconsultation, webinars and seminars, fitness and nutrition sessions, and support for chronic conditions. We tailor the combination to your workforce."),
- ("Can sessions be conducted online?", "Yes. Teleconsultation, webinars, counselling and nutrition coaching can all be delivered online for remote and hybrid teams across India."),
- ("How do you measure the impact of the program?", "We track participation, screening results and follow-up outcomes, and share anonymised quarterly reports with your HR team."),
- ("How long does it take to launch a program?", "Launch timelines depend on the services selected. Most standard programs can begin within a few weeks of confirmation."),
+ ("What does a typical corporate wellness programme include?", "Our programmes may include Occupational Health Centres, Onsite Health Check-ups, Teleconsultations, health webinars, fitness and nutrition sessions, and chronic disease management. Each programme is customised to your workforce's healthcare requirements."),
+ ("Can the programme support remote and hybrid employees?", "Yes. Teleconsultations, webinars, counselling, and nutrition coaching can be delivered virtually, ensuring healthcare access for remote and hybrid employees across India."),
+ ("How do you measure programme effectiveness?", "We monitor employee participation, health screening outcomes, and follow-up activities, providing quarterly anonymised reports to help HR teams assess programme performance."),
+ ("How soon can we launch the programme?", "Implementation timelines depend on the services selected and operational requirements. Most standard programmes can be initiated within a few weeks of confirmation."),
 ]
-ew = f'''{page_hero("Employee Wellness Program", "Employee Wellness Program", "Wellness Programs That Keep Your Workforce Healthy", "Our year-round programs bring together Occupational Health Centres, Onsite Health Check-ups, Teleconsultation, fitness, nutrition and mental wellbeing support. We plan and manage every element and share regular progress reports with you.", "nutrition-guidance", "Nutritionist explaining a balanced diet chart to a client")}
+ew = f'''{page_hero("Employee Wellness Program", "Employee Wellness Program", "Comprehensive Workplace Wellness Programs", "We deliver integrated, year-round employee wellness solutions encompassing Occupational Health Centres, Onsite Health Check-ups, Teleconsultations, fitness, nutrition, and mental wellbeing initiatives. From programme planning to execution and performance reporting, we manage every aspect to promote a healthier, more productive workforce.", "nutrition-guidance", "Nutritionist explaining a balanced diet chart to a client")}
 <section><div class="wrap">
-  <div class="head"><span class="eyebrow">Program Inclusions</span><h2>Everything Your Team Needs to Stay Well</h2>
-    <p class="lede">Choose individual services or combine them into one annual program.</p></div>
-  {features([("ohc", "Occupational Health Centre (OHC)", "A fully managed medical centre at your premises, staffed by qualified doctors and nurses."),
-             ("check", "Onsite Health Check-ups", "Health check-ups at your workplace, including blood pressure, blood sugar, BMI, eye and dental checks."),
-             ("camp", "Onsite Camps", "Deployment of MBBS and specialist doctors at your workplace for health camps."),
-             ("video", "Teleconsultation", "Teleconsultation by general physicians and specialist doctors, by phone or video."),
-             ("lab", "Lab Tests", "Pathology and radiology services, with onsite and home sample collection."),
-             ("talk", "Webinars &amp; Seminars", "Expert-led webinars and seminars by doctors on topics such as heart health, diabetes, sleep and posture."),
-             ("yoga", "Fitness &amp; Yoga Sessions", "Group yoga, stretching and fitness sessions conducted at your office or online."),
-             ("apple", "Nutrition Coaching", "Personalised diet plans and one-to-one guidance from qualified nutritionists."),
-             ("pulse", "Chronic Care Programs", "Ongoing support for diabetes, hypertension, thyroid disorders and weight management.")])}
+  <div class="head"><span class="eyebrow">Program Inclusions</span><h2>Integrated Healthcare &amp; Wellness Solutions for Your Workforce</h2>
+    <p class="lede">Choose individual services or combine them into a customised annual employee wellness programme.</p></div>
+  {features([("ohc", "Occupational Health Centre (OHC)", "End-to-end management of workplace medical centres with qualified doctors and nursing staff."),
+             ("check", "Onsite Health Check-ups", "Workplace health screenings covering blood pressure, blood sugar, BMI, vision, and dental assessments."),
+             ("camp", "Onsite Medical Camps", "Deployment of MBBS and specialist doctors to provide workplace medical services."),
+             ("video", "Teleconsultation", "Convenient phone and video consultations with general physicians and specialists."),
+             ("lab", "Pathology &amp; Radiology", "Comprehensive diagnostic services with onsite and home sample collection."),
+             ("talk", "Health Webinars &amp; Seminars", "Expert-led sessions on preventive healthcare, lifestyle diseases, sleep, and workplace wellness."),
+             ("yoga", "Fitness &amp; Yoga", "Workplace and virtual fitness, yoga, and guided stretching sessions."),
+             ("apple", "Nutrition Coaching", "Personalised dietary guidance and nutrition consultations by qualified nutritionists."),
+             ("pulse", "Chronic Disease Management", "Ongoing healthcare support for diabetes, hypertension, thyroid disorders, and weight management.")])}
 </div></section>
 <section id="ohc" class="soft"><div class="wrap split">
   <div class="media">{img("ohc-clinic", "Doctor consulting an employee at an Occupational Health Centre", WIDE, w=800, h=600)}</div>
-  <div class="copy"><span class="eyebrow">Occupational Health Centre (OHC)</span><h2>A Fully Managed Medical Centre at Your Workplace</h2>
-    <p class="lede">We set up and run Occupational Health Centres at your premises, so that employees receive prompt medical attention without leaving the workplace.</p>
-    {ticks([("Qualified Medical Team", "MBBS doctors and trained nurses, scheduled to suit your working hours and shifts."),
-            ("First Aid &amp; Emergency Response", "Immediate first aid and coordination with nearby hospitals when required."),
-            ("Medical Examinations &amp; Records", "Pre-employment and periodic medical examinations, with confidential health records.")])}</div>
+  <div class="copy"><span class="eyebrow">Occupational Health Centre (OHC)</span><h2>Comprehensive Medical Facilities at Your Workplace</h2>
+    <p class="lede">We provide end-to-end setup and management of Occupational Health Centres at your premises, ensuring employees have convenient access to timely medical care, preventive health services, and emergency support without leaving the workplace.</p>
+    {ticks([("Qualified Medical Professionals", "Deployment of experienced MBBS doctors and trained nursing staff, with schedules aligned to your operational hours and shift requirements."),
+            ("First Aid &amp; Emergency Response", "Immediate medical assistance, first aid management, and coordination with nearby hospitals during medical emergencies."),
+            ("Medical Examinations &amp; Health Records", "Pre-employment and periodic medical assessments, along with secure and confidential employee health record management.")])}</div>
 </div></section>
 <section id="teleconsultation"><div class="wrap split rev">
   <div class="media">{img("online-doctor", "Doctor greeting a patient during a video consultation", WIDE, w=800, h=600)}</div>
-  <div class="copy"><span class="eyebrow">Teleconsultation</span><h2>Teleconsultation with General Physicians and Specialist Doctors</h2>
-    <p class="lede">Employees can consult a doctor by phone or video, without leaving work or waiting in a hospital queue.</p>
-    {benefits([("steth", "General Physicians", "Consultations for everyday health concerns such as fever, infections and lifestyle conditions."),
-               ("users", "Specialist Doctors", "Access to specialist doctors for further evaluation and expert opinion."),
-               ("pill", "Prescriptions &amp; Follow-up", "Digital prescriptions, medicine delivery and follow-up reminders.")])}</div>
+  <div class="copy"><span class="eyebrow">Teleconsultation Services</span><h2>Convenient Access to General Physicians &amp; Specialist Doctors</h2>
+    <p class="lede">We provide seamless access to qualified general physicians and specialist doctors through phone and video consultations, enabling employees to receive timely medical advice without disrupting their work schedules or visiting hospitals.</p>
+    {benefits([("steth", "General Physician Consultations", "Medical consultations for common illnesses, infections, lifestyle-related conditions, and routine health concerns."),
+               ("users", "Specialist Consultations", "Access to experienced specialists for further evaluation, expert medical opinions, and condition-specific guidance."),
+               ("pill", "Digital Prescriptions &amp; Follow-ups", "Online prescriptions, medicine delivery support, and follow-up consultations to ensure continuity of care.")])}</div>
 </div></section>
 <section id="fitness" class="soft"><div class="wrap split">
   <div class="media">{img("physiotherapy", "Physiotherapist guiding a man through a resistance-band exercise", WIDE, w=800, h=600)}</div>
-  <div class="copy"><span class="eyebrow">Fitness &amp; Recovery</span><h2>Building Healthy Habits That Last</h2>
-    <p class="lede">Long hours at a desk can lead to back pain, stiffness and fatigue. Our physiotherapists and fitness coaches help employees move better and feel better.</p>
-    {ticks([("Ergonomic Assessments", "Workstation reviews and posture correction."),
-            ("Physiotherapy Support", "Treatment for back, neck and joint pain."),
-            ("Fitness Challenges", "Monthly activities that keep teams active and engaged.")])}</div>
+  <div class="copy"><span class="eyebrow">Fitness &amp; Recovery</span><h2>Promoting Movement, Fitness &amp; Workplace Wellbeing</h2>
+    <p class="lede">We offer professionally guided fitness and recovery programmes to reduce work-related physical discomfort, improve mobility, and encourage healthier workplace habits.</p>
+    {ticks([("Ergonomic Assessments", "Workstation evaluations and posture improvement guidance."),
+            ("Physiotherapy Support", "Professional care for back, neck, and joint-related concerns."),
+            ("Fitness Initiatives", "Engaging fitness challenges and wellness activities to promote an active workforce.")])}</div>
 </div></section>
 <section><div class="wrap">
-  <div class="head"><span class="eyebrow">Our Approach</span><h2>A Seamless, Fully Managed Program</h2></div>
-  {steps([("Assess", "We review the needs of your team and your existing health benefits."),
-          ("Plan", "We create a 12-month wellness calendar with clear, transparent costs."),
-          ("Deliver", "Our team conducts every session, camp and consultation."),
-          ("Report", "You receive quarterly, anonymised impact reports.")])}
+  <div class="head"><span class="eyebrow">Our Approach</span><h2>A Structured, End-to-End Wellness Management Approach</h2></div>
+  {steps([("Assess", "Evaluate workforce health requirements, organisational priorities, and existing healthcare benefits."),
+          ("Plan", "Develop a customised 12-month wellness calendar with defined activities, timelines, and transparent pricing."),
+          ("Deliver", "Seamlessly coordinate and execute all wellness initiatives, medical camps, consultations, and employee engagement activities."),
+          ("Report", "Provide quarterly, anonymised performance and wellness reports to track programme effectiveness and employee engagement.")])}
 </div></section>
 {faq(ew_faq, soft=True)}
 {enquire("Plan a Wellness Program for Your Team", "Occupational Health Centre (OHC)")}'''
@@ -415,73 +423,76 @@ write("employee-wellness.html", "Employee Wellness Program | Vitania Care",
 
 # ================= HEALTH CHECK-UPS =================
 hc_faq = [
- ("Where are the check-ups conducted?", "Check-ups can be conducted at your office through Onsite Health Check-ups, at a partner diagnostic centre, or through home sample collection."),
- ("How are reports shared?", "Each employee receives a digital report, and a doctor explains the results and recommends the next steps where required."),
- ("Can you conduct pre-employment medical examinations at short notice?", "Yes. We schedule pre-employment check-ups promptly so that joining dates are not delayed."),
- ("Do employees need to fast before the tests?", "Some blood tests require 8–12 hours of fasting. We share preparation instructions with every employee before the test."),
+ ("Where can employees undergo health check-ups?", "Health check-ups can be organised at your corporate premises through onsite screening programmes, at our partnered diagnostic centres, or through convenient home-based sample collection services."),
+ ("Will employees receive their medical reports and consultation?", "Yes. Every employee receives a digital copy of their medical report. Qualified doctors review the reports, explain the findings, and provide appropriate medical guidance and follow-up recommendations wherever required."),
+ ("Can you accommodate urgent pre-employment medical examinations?", "Absolutely. We facilitate timely scheduling and completion of pre-employment medical examinations to support smooth employee onboarding and minimise delays in joining formalities."),
+ ("Is fasting required before health check-ups?", "Certain blood investigations may require 8–12 hours of fasting. Employees are provided with the necessary test preparation guidelines and instructions in advance to ensure accurate results."),
 ]
-hc = f'''{page_hero("Health Check-ups", "Health Check-ups", "Preventive Health Check-ups for Early Detection and Timely Care", "We offer Annual Health Check-ups, Pre-employment Medical Examinations, Onsite Health Check-ups and Lab Tests, with every report reviewed by a doctor and a Doctor Consultation provided as needed.", "bp-check", "Doctor measuring an employee's blood pressure during a health check-up")}
+hc = f'''{page_hero("Health Check-ups", "Health Check-ups", "Preventive Healthcare Services for Early Detection and Proactive Care", "We offer comprehensive preventive healthcare solutions, including Annual Health Check-ups, Pre-employment Medical Examinations, Food Handler Medical Tests, Onsite Health Screenings, and Pathology and Radiology Services. All medical reports are reviewed by qualified doctors, with consultations and clinical guidance provided whenever required.", "bp-check", "Doctor measuring an employee's blood pressure during a health check-up")}
 <section><div class="wrap">
-  <div class="head"><span class="eyebrow">Our Check-up Services</span><h2>Screening for Every Stage of Employment</h2></div>
-  {features([("check", "Annual Health Check-ups", "Comprehensive packages that include blood tests, an ECG, eye tests and a Doctor Consultation."),
-             ("users", "Pre-employment Check-ups", "Fitness-for-work medical examinations for new joiners, completed promptly and on schedule."),
-             ("building", "Onsite Health Check-ups", "Blood pressure, blood sugar, BMI, eye and dental checks conducted at your workplace."),
-             ("camp", "Onsite Camps", "Deployment of MBBS and specialist doctors at your workplace for health camps."),
-             ("lab", "Lab Tests", "Pathology and radiology services, with onsite and home sample collection."),
-             ("steth", "Doctor Review of Reports", "A doctor explains every report and recommends follow-up care where required.")])}
+  <div class="head"><span class="eyebrow">Our Check-up Services</span><h2>Comprehensive Health Screening Across Every Stage of Employment</h2></div>
+  {features([("check", "Annual Health Check-ups", "Comprehensive preventive health packages covering essential blood investigations, ECG, vision screening, and doctor consultations to support early detection and overall health monitoring."),
+             ("users", "Pre-employment Medical Examinations", "Structured medical assessments to evaluate candidates' fitness for employment, ensuring timely completion and efficient onboarding."),
+             ("building", "Onsite Health Screenings", "Workplace-based health assessments, including blood pressure, blood glucose, BMI, vision, and dental screenings, for convenient employee health monitoring."),
+             ("camp", "Onsite Medical Camps", "Deployment of qualified MBBS and specialist doctors at corporate premises to conduct medical camps and provide accessible healthcare services."),
+             ("lab", "Pathology &amp; Radiology Services", "Comprehensive diagnostic services, including pathology investigations and radiology tests, with convenient onsite and home-based sample collection facilities."),
+             ("steth", "Doctor-Reviewed Reports &amp; Consultations", "Medical reports reviewed by qualified doctors, with professional interpretation, consultations, and appropriate follow-up recommendations wherever required.")])}
 </div></section>
 <section id="camps" class="soft"><div class="wrap split">
   <div class="media">{img("medical-camp", "Doctors attending to employees at an onsite health camp", WIDE, w=800, h=600)}</div>
-  <div class="copy"><span class="eyebrow">Onsite Camps</span><h2>MBBS and Specialist Doctors at Your Workplace</h2>
-    <p class="lede">We deploy MBBS and specialist doctors, along with technicians and equipment, at your workplace, and schedule slots around working hours to avoid disruption.</p>
-    {ticks([("Specialist Doctors", "Specialists deployed according to the health needs of your workforce."),
-            ("Flexible Scale", "Camps for a single team or an entire office."),
-            ("Follow-up Care", "Doctor Consultations for employees who need further advice.")])}</div>
+  <div class="copy"><span class="eyebrow">Onsite Medical Camps</span><h2>Expert Medical Care, Delivered to Your Workplace</h2>
+    <p class="lede">We provide comprehensive onsite healthcare services by deploying qualified MBBS and specialist doctors, along with trained medical technicians and the necessary equipment. Our camps are scheduled around your organisation’s working hours to ensure seamless healthcare access with minimal disruption to business operations.</p>
+    {ticks([("Specialist Medical Support", "Deployment of experienced specialists based on your employees’ healthcare requirements."),
+            ("Flexible Deployment", "Customised medical camps designed to accommodate individual teams, departments, or the entire workforce."),
+            ("Convenient Scheduling", "Flexible appointment slots aligned with workplace schedules to ensure smooth operations."),
+            ("Medical Consultations &amp; Follow-ups", "Professional consultations and appropriate follow-up guidance for employees requiring further medical attention.")])}</div>
 </div></section>
 <section id="lab-tests"><div class="wrap split rev">
   <div class="media">{img("lab-test", "Laboratory technician examining a blood sample beside a microscope", WIDE, w=800, h=600)}</div>
-  <div class="copy"><span class="eyebrow">Lab Tests</span><h2>Pathology and Radiology Services</h2>
-    <p class="lede">We arrange accurate diagnostic tests through trusted partner laboratories and diagnostic centres, with convenient sample collection at your workplace or at home.</p>
-    {ticks([("Pathology", "Blood, urine and other laboratory tests, with reports shared digitally."),
-            ("Radiology", "X-ray, ultrasound and other imaging through partner diagnostic centres."),
-            ("Onsite &amp; Home Sample Collection", "Trained technicians collect samples at your workplace or at home.")])}</div>
+  <div class="copy"><span class="eyebrow">Diagnostic Services – Pathology &amp; Radiology</span><h2>Comprehensive Diagnostic Solutions at Your Convenience</h2>
+    <p class="lede">We facilitate a wide range of pathology and radiology services through our network of trusted laboratory and diagnostic partners, ensuring reliable testing, convenient sample collection, and timely delivery of reports. Services are available at corporate premises and employees’ homes for greater accessibility and convenience.</p>
+    {ticks([("Pathology Services", "Comprehensive blood, urine, and other laboratory investigations, with reports delivered digitally."),
+            ("Radiology Services", "Access to diagnostic imaging services, including X-rays, ultrasound, and other radiological investigations through our partner diagnostic centres."),
+            ("Onsite &amp; Home Sample Collection", "Convenient sample collection at workplaces and residences by trained healthcare professionals."),
+            ("Timely Reporting", "Efficient coordination with diagnostic partners to facilitate timely report delivery and seamless access to diagnostic results.")])}</div>
 </div></section>
 <section class="soft"><div class="wrap">
-  <div class="head"><span class="eyebrow">How It Works</span><h2>Simple for HR and Employees</h2></div>
-  {steps([("Choose a Package", "We recommend packages based on age, role and health risk."),
-          ("Schedule", "Employees book slots at the office, a diagnostic centre or at home."),
-          ("Test", "Samples and checks are completed by trained professionals."),
-          ("Review", "A doctor explains the results and plans follow-up care.")])}
+  <div class="head"><span class="eyebrow">How It Works</span><h2>A Seamless Healthcare Experience for HR Teams and Employees</h2>
+    <p class="lede">Our streamlined process ensures convenient coordination, efficient service delivery, and professional medical support at every stage.</p></div>
+  {steps([("Package Selection", "We recommend customised health check-up packages based on employees’ age groups, job roles, medical requirements, and occupational health risks."),
+          ("Scheduling &amp; Coordination", "We coordinate appointments and testing schedules, offering employees the flexibility to access services at their workplace, designated diagnostic centres, or their homes."),
+          ("Health Screening &amp; Diagnostics", "All medical examinations, diagnostic tests, and sample collections are conducted by qualified healthcare professionals using appropriate equipment and established protocols."),
+          ("Medical Review &amp; Follow-up", "Medical reports are reviewed by qualified doctors, with professional consultations, interpretation of results, and follow-up recommendations provided wherever necessary.")])}
 </div></section>
 {faq(hc_faq)}
-{enquire("Book Health Check-ups for Your Team", "Annual Health Check-ups")}'''
+{enquire("Comprehensive Healthcare Solutions for Your Workforce", "Annual Health Check-ups", "Partner with us to provide accessible, reliable, and professionally managed healthcare services for your employees. Share your organisation's requirements, and our team will recommend a customised healthcare programme based on your workforce size, locations, medical requirements, and budget. Connect with us to design the right healthcare solution for your organisation.")}'''
 write("health-checkups.html", "Preventive Health Check-ups for Employees | Vitania Care",
-      "Annual, pre-employment and onsite health check-ups, onsite camps with MBBS and specialist doctors, and pathology and radiology lab tests with onsite and home sample collection.", hc,
+      "Comprehensive preventive healthcare solutions, including annual and pre-employment health check-ups, onsite medical camps with MBBS and specialist doctors, and pathology and radiology services with convenient onsite and home sample collection.", hc,
       [("Home", ""), ("Health Check-ups", "health-checkups.html")], "Employee Health Check-ups")
 
 # ================= MENTAL WELLBEING =================
 mw_faq = [
- ("Is counselling confidential?", "Yes. All sessions are completely confidential. Employers are never informed about who used the service or what was discussed."),
- ("Who can use the Employee Assistance Program?", "All employees covered under your plan can use the service, and family members can be included if you choose."),
- ("How do employees book a session?", "Employees can call or message our team to book a phone, video or in-person session at a convenient time."),
- ("What concerns can counsellors help with?", "Counsellors can help with stress, anxiety, low mood, relationships, parenting, grief, work pressure and work–life balance, among other concerns."),
+ ("Are counselling sessions confidential?", "Yes. All sessions are strictly confidential. Employee participation and personal discussions are not disclosed to employers."),
+ ("Who can access the service?", "All employees covered under the programme are eligible. Family members can also be included based on the selected plan."),
+ ("How can employees book a session?", "Employees can contact our support team to schedule phone, video, or in-person counselling at their convenience."),
+ ("What concerns can counsellors address?", "Counselling support covers stress, anxiety, emotional wellbeing, relationship challenges, parenting, grief, workplace pressure, and work–life balance."),
 ]
-mw = f'''{page_hero("Mental Wellbeing", "Employee Assistance Program (EAP)", "Confidential Support for Employee Mental Wellbeing", "Qualified counsellors help employees manage stress, anxiety and personal challenges through phone, video or in-person sessions.", "online-doctor", "Counsellor smiling and waving during a video session")}
+mw = f'''{page_hero("Mental Wellbeing", "Employee Assistance Program (EAP)", "Confidential Counselling for a Healthier, More Resilient Workforce", "We provide confidential mental health and emotional wellbeing support through qualified counsellors, helping employees navigate workplace stress, anxiety, personal challenges, and emotional concerns. Employees can access professional counselling through flexible phone, video, or in-person sessions, ensuring convenient, compassionate, and personalised support.", "online-doctor", "Counsellor smiling and waving during a video session")}
 <section><div class="wrap">
-  <div class="head"><span class="eyebrow">Program Inclusions</span><h2>Support for Everyday and Difficult Moments</h2></div>
-  {features([("talk", "One-to-One Counselling", "Confidential sessions with qualified counsellors and psychologists."),
-             ("users", "Family Support", "Counselling that can be extended to spouses, children and parents."),
-             ("mind", "Stress &amp; Resilience Workshops", "Group sessions on stress, burnout, sleep and emotional wellbeing."),
-             ("users", "Manager Training", "Training that helps team leaders recognise signs of distress and respond with care."),
-             ("shield", "Critical Incident Support", "Prompt support for teams after a crisis or traumatic event."),
-             ("chart", "Anonymised Insights", "Usage and wellbeing trends that help guide your HR policies.")])}
+  <div class="head"><span class="eyebrow">Program Inclusions</span><h2>Comprehensive Mental Health &amp; Wellbeing Support</h2></div>
+  {features([("talk", "One-to-One Counselling", "Confidential counselling sessions with qualified psychologists and mental health professionals."),
+             ("users", "Family Counselling", "Wellbeing support extended to employees and their immediate family members."),
+             ("mind", "Stress Management Workshops", "Interactive sessions on stress management, burnout prevention, sleep, and emotional wellbeing."),
+             ("users", "Manager Training", "Equipping managers to identify early signs of distress and provide appropriate support."),
+             ("shield", "Critical Incident Support", "Timely psychological support for employees and teams following critical or traumatic events."),
+             ("chart", "Anonymised Wellbeing Insights", "Confidential, aggregated insights to help HR teams strengthen workplace wellbeing initiatives.")])}
 </div></section>
 <section class="soft"><div class="wrap">
-  <div class="head"><span class="eyebrow">Why It Matters</span><h2>A Supported Team Is a Productive Team</h2>
-    <p class="lede">Unaddressed stress affects focus, attendance and retention. Early, confidential support helps employees stay well and perform at their best.</p></div>
-  {features([("video", "Flexible Sessions", "Counselling available by phone, video or in person, at a time that suits the employee."),
-             ("calendar", "Easy Booking", "A simple booking process with no paperwork required for employees."),
-             ("lock", "Complete Privacy", "Every conversation remains strictly confidential.")])}
+  <div class="head"><span class="eyebrow">Why It Matters</span><h2>Supporting Employee Wellbeing, Strengthening Workplace Performance</h2>
+    <p class="lede">Proactive mental health support helps reduce workplace stress, improve employee engagement, and enhance productivity, wellbeing, and retention.</p></div>
+  {features([("video", "Flexible Access", "Confidential counselling through phone, video, or in-person sessions at convenient times."),
+             ("calendar", "Easy Scheduling", "A simple and hassle-free appointment booking process for employees."),
+             ("lock", "Strict Confidentiality", "All counselling sessions and personal information are handled with the utmost privacy and confidentiality.")])}
 </div></section>
 {faq(mw_faq)}
 {enquire("Set Up an Employee Assistance Program", "Mental Wellbeing (EAP)")}'''
@@ -491,50 +502,51 @@ write("mental-wellbeing.html", "Employee Assistance Program (EAP) | Vitania Care
 
 # ================= HOME CARE =================
 hm_faq = [
- ("How soon can a doctor or nurse visit?", "Visits can often be arranged within a day. Please let us know how urgent the requirement is when you contact us."),
- ("Is Home Care suitable for medical emergencies?", "No. Home Care is not a substitute for emergency services. In a medical emergency, please call an ambulance or visit the nearest hospital."),
- ("What support do your caregivers provide?", "Our caregivers assist with personal care, mobility, feeding, medication reminders and companionship. We recommend a care plan after understanding the needs of the patient."),
- ("Do you provide medical equipment on rent?", "Yes. We arrange wheelchairs, walkers, hospital beds and oxygen concentrators on rent, delivered to your home."),
- ("Can organisations offer Home Care as an employee benefit?", "Yes. Organisations can extend Home Care services to employees and their families as part of their Employee Wellness Program."),
+ ("How quickly can home care services be arranged?", "Visits can often be scheduled within 24 hours, subject to availability and location."),
+ ("Do home care services cover medical emergencies?", "No. In an emergency, please contact ambulance services or visit the nearest hospital."),
+ ("What support do caregivers provide?", "Caregivers assist with personal care, mobility, feeding, medication reminders and companionship."),
+ ("Can I rent medical equipment?", "Yes. Wheelchairs, walkers, hospital beds and oxygen concentrators are available on rent."),
+ ("Can organisations offer home care to employees and their families?", "Yes. Organisations can include our home healthcare services as part of their employee wellness benefits."),
 ]
-hm = f'''{page_hero("Home Care", "Home Care", "Professional Medical Care in the Comfort of Your Home", "We provide doctor and nurse visits, Caregiver Services, physiotherapy, lab tests and medicine delivery at home, helping patients recover and manage their health with ease.", "doctor-home-visit", "Doctor checking an elderly man's heartbeat at home while his wife looks on")}
+hm = f'''{page_hero("Home Care", "Home Care", "Professional Medical Care in the Comfort of Your Home", "We deliver comprehensive home healthcare, including doctor and nursing visits, caregiver support, physiotherapy, lab tests and medicine delivery, ensuring convenient and personalised care at home.", "doctor-home-visit", "Doctor checking an elderly man's heartbeat at home while his wife looks on")}
 <section><div class="wrap">
-  <div class="head"><span class="eyebrow">Home Care Services</span><h2>Quality Medical Care Without the Hospital Visit</h2></div>
-  {features([("steth", "Doctor Visits at Home", "General physicians who examine, diagnose and prescribe at home."),
-             ("nurse", "Nursing Care", "Injections, wound dressing, IV care and post-operative care by trained nurses."),
-             ("users", "Caregiver Services", "Trained caregivers who assist with personal care, mobility and daily living at home."),
-             ("physio", "Physiotherapy", "Post-surgery, post-injury and post-stroke rehabilitation sessions at home."),
+  <div class="head"><span class="eyebrow">Home Healthcare Services</span><h2>Professional Medical Care, Delivered to Your Doorstep</h2>
+    <p class="lede">Access reliable medical care and personalised support in the comfort of your home.</p></div>
+  {features([("steth", "Doctor Visits at Home", "Qualified physicians providing home consultations, medical assessments and prescriptions."),
+             ("nurse", "Nursing Care", "Professional nursing support for injections, wound dressing, IV therapy and post-operative care."),
+             ("users", "Caregiver Services", "Trained caregivers assisting with personal care, mobility and daily activities."),
+             ("physio", "Physiotherapy at Home", "Personalised rehabilitation for post-surgical, post-injury and post-stroke recovery."),
              ("lab", "Lab Tests at Home", "Home sample collection for laboratory tests, with reports shared digitally."),
              ("bed", "Medical Equipment on Rent", "Hospital beds, wheelchairs and oxygen concentrators provided on a rental basis.")])}
 </div></section>
 <section id="caregivers" class="soft"><div class="wrap split">
   <div class="media">{img("nurse-elderly-care", "Caregiver holding the hand of an elderly woman resting in bed", WIDE, w=800, h=600)}</div>
-  <div class="copy"><span class="eyebrow">Caregiver Services</span><h2>Trained Caregivers for Everyday Support at Home</h2>
-    <p class="lede">Our caregivers provide compassionate and reliable assistance with daily activities, helping patients and elderly family members live safely and comfortably at home.</p>
-    {benefits([("users", "Personal Care Assistance", "Support with bathing, grooming, dressing and toileting, delivered with dignity and respect."),
-               ("physio", "Mobility &amp; Daily Living Support", "Help with walking, transfers, feeding and everyday routines."),
-               ("pill", "Medication Reminders &amp; Companionship", "Timely medication reminders, regular monitoring and attentive companionship."),
-               ("calendar", "Flexible Care Plans", "Short-term or long-term support, scheduled according to your requirements.")])}</div>
+  <div class="copy"><span class="eyebrow">Caregiver Services</span><h2>Compassionate, Professional Care at Home</h2>
+    <p class="lede">Our trained caregivers provide personalised assistance to senior citizens and patients, ensuring comfort, dignity, safety and support in their daily lives.</p>
+    {benefits([("users", "Personal Care", "Assistance with bathing, grooming, dressing and hygiene."),
+               ("physio", "Mobility &amp; Daily Support", "Help with walking, transfers, feeding and everyday activities."),
+               ("pill", "Medication Reminders &amp; Companionship", "Timely reminders, routine support and compassionate companionship."),
+               ("calendar", "Flexible Care Plans", "Customised short-term and long-term caregiving services to suit individual needs.")])}</div>
 </div></section>
 <section><div class="wrap split rev">
   <div class="media">{img("medicine-delivery", "Delivery executive handing a bag of medicines to a customer at his door", WIDE, w=800, h=600)}</div>
-  <div class="copy"><span class="eyebrow">Everyday Support</span><h2>Medicines &amp; Medical Equipment, Delivered to Your Doorstep</h2>
-    <p class="lede">We make healthcare management easier by arranging prescribed medications, timely refills and essential medical equipment, helping individuals and families access the care and support they need.</p>
-    {benefits([("refill", "Monthly Medicine Refills", "Convenient monthly medicine replenishment with timely reminders to ensure continuity of medication."),
-               ("bed", "Medical Equipment on Rent", "Access to essential medical equipment, including wheelchairs, walkers, hospital beds and oxygen concentrators, available for rent."),
-               ("apple", "Personalised Nutrition Plans", "Tailored nutrition plans to support recovery, improve overall wellbeing and promote healthy ageing.")])}</div>
+  <div class="copy"><span class="eyebrow">Medicines &amp; Medical Equipment</span><h2>Essential Healthcare, Delivered to Your Doorstep</h2>
+    <p class="lede">Convenient access to prescribed medicines, medical equipment and personalised nutrition support for better health management at home.</p>
+    {benefits([("refill", "Monthly Medicine Refills", "Timely medicine delivery and refill support for uninterrupted care."),
+               ("bed", "Medical Equipment on Rent", "Wheelchairs, walkers, hospital beds and oxygen concentrators available for rent."),
+               ("apple", "Personalised Nutrition Plans", "Tailored dietary guidance to support recovery, wellness and healthy ageing.")])}</div>
 </div></section>
 <section class="soft"><div class="wrap">
-  <div class="head"><span class="eyebrow">How It Works</span><h2>Arranging Care at Home</h2></div>
-  {steps([("Share Your Requirement", "Tell us who needs care, where and what kind of support is required."),
-          ("Clinical Assessment", "A doctor or nurse assesses the condition and recommends a care plan."),
-          ("Care at Home", "Visits, nursing, caregiving, therapy or tests are scheduled at a time that suits you."),
-          ("Regular Updates", "We monitor progress and keep you and your doctor informed.")])}
+  <div class="head"><span class="eyebrow">How It Works</span><h2>Seamless Healthcare, Delivered at Home</h2></div>
+  {steps([("Share Your Requirements", "Tell us your healthcare needs, location and preferred support."),
+          ("Clinical Assessment", "Our medical professionals assess your needs and recommend suitable care."),
+          ("Care at Home", "We schedule the required healthcare services at your convenience."),
+          ("Ongoing Support &amp; Updates", "We monitor progress and keep you and your family informed.")])}
 </div></section>
 {faq(hm_faq)}
-{enquire("Arrange Home Care", "Home Care", "Tell us who needs care and where, and our team will recommend the right services for you and your family.")}'''
+{enquire("Arrange Home Care", "Home Care", "Share your care requirements and location, and our team will recommend the right healthcare solutions.")}'''
 write("home-care.html", "Home Care Services | Vitania Care",
-      "Doctor and nurse visits, Caregiver Services, physiotherapy, lab tests, medicine delivery and medical equipment on rent, delivered at home by Vitania Care.", hm,
+      "Vitania Care offers comprehensive home healthcare, including doctor and nursing visits, caregiver support, physiotherapy, lab tests, medicine delivery and medical equipment rentals.", hm,
       [("Home", ""), ("Home Care", "home-care.html")], "Home Care")
 
 # ================= ABOUT =================
@@ -551,19 +563,19 @@ about = f'''{page_hero("About Us", "About Vitania Care", "Healthier People, Brig
     <ul class="ticks"><li>Help people identify health risks early and take timely action.</li><li>Make doctors, counsellors and nurses easily accessible.</li><li>Coordinate care so that nothing is overlooked.</li><li>Provide employers with clear, confidential insights into workforce health.</li></ul></div>
 </div></section>
 <section><div class="wrap">
-  <div class="head"><span class="eyebrow">Our Values</span><h2>The Principles That Guide Our Work</h2></div>
-  {features([("shield", "Integrity", "We are transparent about our services and protect the privacy of every individual."),
-             ("users", "Care", "We treat every employee and family member with patience, empathy and respect."),
-             ("chart", "Accountability", "We measure our work and report results openly to our clients.")])}
+  <div class="head"><span class="eyebrow">Our Values</span><h2>The Principles That Define Our Care</h2></div>
+  {features([("shield", "Integrity", "Transparency, trust and confidentiality in everything we do."),
+             ("users", "Compassion", "Delivering every service with empathy, dignity and respect."),
+             ("chart", "Accountability", "Taking ownership of service quality, commitments and measurable outcomes.")])}
 </div></section>
 <section class="soft"><div class="wrap">
-  <div class="head"><span class="eyebrow">Leadership</span><h2>Meet Our Founders</h2></div>
+  <div class="head"><span class="eyebrow">Leadership</span><h2>Meet Our Leadership Team</h2></div>
   <div class="team">
-    <div class="person"><img src="assets/sanjeet-kumar.webp" alt="Sanjeet Kumar" width="192" height="192" loading="lazy"><h3>Sanjeet Kumar</h3><p class="role">Founder &amp; CEO</p><p class="meta">chairman@vitaniacare.com</p></div>
+    <div class="person"><img src="assets/sanjeet-kumar.webp" alt="Sanjeet Kumar" width="192" height="192" loading="lazy"><h3>Sanjeet Kumar</h3><p class="role">Founder &amp; Chief Executive Officer</p><p class="meta">chairman@vitaniacare.com</p></div>
     <div class="person"><img src="assets/prateeksha-devadiga.webp" alt="Prateeksha Devadiga" width="192" height="192" loading="lazy"><h3>Prateeksha Devadiga</h3><p class="role">Co-Founder &amp; Head of Operations</p><p class="meta">prateeksha@vitaniacare.com</p></div>
   </div>
 </div></section>
-{cta("Partner with Us for a Healthier Workplace", "Speak with our team about a wellness program for your organisation or Home Care for your family.")}'''
+{cta("Partner with Vitania Care", "Let's build healthier workplaces and deliver quality healthcare with care, trust and expertise. Connect with our team to explore tailored healthcare solutions for your organisation and family.")}'''
 write("about.html", "About Us | Vitania Care Private Limited",
       "Vitania Care Private Limited is a Bengaluru-based healthcare organisation delivering Employee Wellness Programs, preventive healthcare and home healthcare services across India.", about,
       [("Home", ""), ("About Us", "about.html")])

@@ -568,7 +568,7 @@ about = f'''{page_hero("About Us", "About Vitania Care", "Healthier People, Brig
              ("users", "Compassion", "Delivering every service with empathy, dignity and respect."),
              ("chart", "Accountability", "Taking ownership of service quality, commitments and measurable outcomes.")])}
 </div></section>
-<section class="soft"><div class="wrap">
+<section style="background:#fff"><div class="wrap">
   <div class="head center"><span class="eyebrow">Leadership</span><h2>Meet Our Leadership Team</h2></div>
   <div class="team">
     <div class="person"><img src="assets/sanjeet-kumar.webp" alt="Sanjeet Kumar" width="192" height="192" loading="lazy"><h3>Sanjeet Kumar</h3><p class="role">Founder &amp; Chief Executive Officer</p><p class="meta">chairman@vitaniacare.com</p></div>

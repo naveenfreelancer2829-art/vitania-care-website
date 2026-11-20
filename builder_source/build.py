@@ -569,10 +569,10 @@ about = f'''{page_hero("About Us", "About Vitania Care", "Healthier People, Brig
              ("chart", "Accountability", "Taking ownership of service quality, commitments and measurable outcomes.")])}
 </div></section>
 <section style="background:#fff"><div class="wrap">
-  <div class="head center"><span class="eyebrow">Leadership</span><h2>Meet Our Leadership Team</h2></div>
-  <div class="team">
-    <div class="person"><img src="assets/sanjeet-kumar.webp" alt="Sanjeet Kumar" width="600" height="600" loading="lazy"><h3>Sanjeet Kumar</h3><p class="role">Founder &amp; Chief Executive Officer</p><p class="meta">chairman@vitaniacare.com</p></div>
-    <div class="person"><img src="assets/prateeksha-devadiga.webp" alt="Prateeksha Devadiga" width="600" height="600" loading="lazy"><h3>Prateeksha Devadiga</h3><p class="role">Co-Founder &amp; Head of Operations</p><p class="meta">prateeksha@vitaniacare.com</p></div>
+  <div class="lead-head"><h2><span class="ln"></span>Meet Our <em>Leadership Team</em><span class="ln"></span></h2><p>Driven by a shared vision to build a healthier, happier and more productive tomorrow.</p></div>
+  <div class="leads">
+    <div class="lead"><div class="lead-photo"><img src="assets/sanjeet-kumar-cut.webp" alt="Sanjeet Kumar" loading="lazy"></div><div class="lead-info"><h3>Sanjeet Kumar</h3><span class="lead-line"></span><p class="role">Founder &amp; Chief Executive Officer</p><a class="lead-mail" href="mailto:chairman@vitaniacare.com"><i><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#fff" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></i>chairman@vitaniacare.com</a></div></div>
+    <div class="lead"><div class="lead-photo"><img src="assets/prateeksha-devadiga-cut.webp" alt="Prateeksha Devadiga" loading="lazy"></div><div class="lead-info"><h3>Prateeksha Devadiga</h3><span class="lead-line"></span><p class="role">Co-Founder &amp; Head of Operations</p><a class="lead-mail" href="mailto:prateeksha@vitaniacare.com"><i><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#fff" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></i>prateeksha@vitaniacare.com</a></div></div>
   </div>
 </div></section>
 {cta("Partner with Vitania Care", "Let's build healthier workplaces and deliver quality healthcare with care, trust and expertise. Connect with our team to explore tailored healthcare solutions for your organisation and family.")}'''

@@ -279,3 +279,21 @@ main{overflow-x:clip}
 /* Card without a photo: soft brand panel with a large icon */
 .card-art{aspect-ratio:16/10;display:grid;place-items:center;background:linear-gradient(135deg,#E4F4F1 0%,#DDEBF6 100%);color:var(--teal)}
 .card-art svg{width:84px;height:84px;padding:22px;box-sizing:content-box;border-radius:50%;background:#fff;box-shadow:0 10px 30px rgba(11,61,107,.10);stroke-width:1.5}
+
+.lead-head{text-align:center;margin-bottom:44px}
+.lead-head h2{display:flex;align-items:center;justify-content:center;gap:22px;font-size:clamp(1.8rem,3.6vw,2.8rem)}
+.lead-head h2 em{font-style:normal;color:var(--teal)}
+.lead-head .ln{width:90px;height:2px;background:var(--teal);flex:none}
+.lead-head p{color:var(--muted);margin-top:10px;font-size:1.05rem}
+.leads{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,480px),560px));gap:32px;justify-content:center}
+.lead{position:relative;display:grid;grid-template-columns:48% 1fr;align-items:center;min-height:300px;background:radial-gradient(circle at 0 0,transparent 0 96px,var(--teal) 97px 118px,transparent 119px),linear-gradient(120deg,#EEF5F7 0%,#F7FBFC 45%,#fff 70%);border-radius:24px;overflow:hidden;box-shadow:0 14px 36px rgba(11,61,107,.12)}
+.lead::after{content:"";position:absolute;right:-40px;bottom:-70px;width:340px;height:120px;background:var(--teal);border-radius:100% 0 0 0/100% 0 0 0;z-index:0}
+.lead-photo{position:relative;z-index:1;align-self:end;height:100%;display:flex;align-items:flex-end;justify-content:center}
+.lead-photo img{width:100%;max-height:320px;object-fit:contain;object-position:bottom;display:block}
+.lead-info{position:relative;z-index:1;padding:28px 26px 52px 6px;text-align:left}
+.lead-info h3{font-size:1.6rem;line-height:1.15;color:var(--navy-2,#0B2545);font-weight:700}
+.lead-line{display:block;width:70%;height:2px;background:var(--teal);margin:14px 0}
+.lead-info .role{color:var(--teal-ink);font-weight:600;font-size:1.08rem;line-height:1.35}
+.lead-mail{display:flex;align-items:center;gap:10px;margin-top:18px;color:var(--ink,#1b2b3a);font-size:.92rem;text-decoration:none;overflow-wrap:anywhere}
+.lead-mail i{flex:none;width:32px;height:32px;border-radius:50%;background:var(--teal);display:grid;place-items:center}
+@media(max-width:560px){.lead{grid-template-columns:44% 1fr;min-height:240px}.lead-info h3{font-size:1.25rem}.lead-info .role{font-size:.92rem}.lead-mail{font-size:.78rem;gap:6px}.lead-mail i{width:26px;height:26px}.lead-head .ln{display:none}.lead-head h2{display:block}.lead::after{width:220px}}

@@ -259,7 +259,7 @@ cards = [
  ("health-checkups.html#camps", "medical-camp", "Doctors attending to employees at an onsite health camp", "Onsite Medical Camps", "Onsite deployment of qualified MBBS and specialist doctors for workplace health camps."),
  ("employee-wellness.html#teleconsultation", "online-doctor", "Doctor greeting a patient during a video consultation", "Teleconsultation", "Convenient phone and video consultations with general physicians and specialists."),
  ("health-checkups.html#lab-tests", "lab-test", "Laboratory technician examining a blood sample", "Laboratory &amp; Diagnostic Services", "Pathology and radiology services with convenient onsite and home sample collection."),
- ("mental-wellbeing.html", None, "", "Mental Wellbeing (EAP)", "Confidential counselling and wellness workshops for employees and their families."),
+ ("mental-wellbeing.html", "eap-counselling", "Counsellor listening to an employee during a confidential session", "Mental Wellbeing (EAP)", "Confidential counselling and wellness workshops for employees and their families."),
  ("employee-wellness.html", "nutrition-guidance", "Nutritionist explaining a balanced diet plan to a client", "Employee Wellness Programs", "Year-round wellness initiatives covering fitness, yoga, nutrition, webinars and chronic care management."),
  ("home-care.html", "doctor-home-visit", "Doctor examining an elderly man at home", "Home Healthcare", "Doctor and nursing visits, physiotherapy, lab tests and medicine delivery at home."),
  ("home-care.html#caregivers", "nurse-elderly-care", "Caregiver holding the hand of an elderly woman", "Caregiver Services", "Trained caregivers providing personal care, mobility assistance and daily living support at home."),
